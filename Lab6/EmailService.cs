@@ -8,6 +8,9 @@ using System.Xml.Linq;
 
 namespace Lab6
 {
+    /// <summary>
+    /// Абстрактный класс EmailService, который реализует интерфейс IEmailSender
+    /// </summary>
     public abstract class EmailService : IEmailSender
     {
         private readonly string _smtpServer;
@@ -17,14 +20,12 @@ namespace Lab6
         private string _recipient;
         private string _message;
         private bool _isSent = false;
-        protected EmailService(string smtpServer, string receiver, string messageText, string sender)
-        {
 
-            SmtpServer = smtpServer;
-            Receiver = receiver;
-            MessageText = messageText;
-            Sender = sender;
-        }
+        /// <summary>
+        /// Установка и получение поля SmtpServer(SMTP-сервер).
+        /// Внутри происходит проверка на null.
+        /// Если все успешно выведет название SMTP-сервер с удаленными пробелами(_smtpServer = value.Trim();).
+        /// </summary>
         public string SmtpServer
         {
             get => _smtpServer;
@@ -36,10 +37,16 @@ namespace Lab6
                 }
                 else
                 {
-                    throw new FormatException("Incorrect name.");
+                    throw new FormatException("Неверное название SMTP-сервер ");
                 }
             }
         }
+
+        /// <summary>
+        /// Установка и получение поля Receiver(Получатель).
+        /// Внутри происходит проверка на null.
+        /// Если все успешно выведет адресс Получателя с удаленными пробелами(_receiver = value.Trim();).
+        /// </summary>
 
         public string Receiver
         {
@@ -52,11 +59,16 @@ namespace Lab6
                 }
                 else
                 {
-                    throw new FormatException("Incorrect name.");
+                    throw new FormatException("Неверный адресс получателя");
                 }
             }
         }
 
+        /// <summary>
+        /// Установка и получение поля MessageText(Текст письма).
+        /// Внутри происходит проверка на null.
+        /// Если все успешно выведет текст письма с удаленными пробелами(_messageText = value.Trim();).
+        /// </summary>
         public string MessageText
         {
             get => _messageText;
@@ -68,11 +80,16 @@ namespace Lab6
                 }
                 else
                 {
-                    throw new FormatException("Incorrect name.");
+                    throw new FormatException("Неверный текст письма");
                 }
             }
         }
 
+        /// <summary>
+        /// Установка и получение поля Sender(Отправитель).
+        /// Внутри происходит проверка на null.
+        /// Если все успешно выведет адресс отправителя с удаленными пробелами(_sender = value.Trim();).
+        /// </summary>
         public string Sender
         {
             get => _sender;
@@ -84,11 +101,30 @@ namespace Lab6
                 }
                 else
                 {
-                    throw new FormatException("Incorrect name.");
+                    throw new FormatException("Неверный адресс отправителя");
                 }
             }
         }
 
+        /// <summary>
+        /// Создает новый экземпляр класса EmailService.
+        /// </summary>
+        /// <param name="smtpServer">SMTP-сервер</param>
+        /// <param name="receiver">Получатель</param>
+        /// <param name="messageText">Текст письма</param>
+        /// <param name="sender">Отправитель</param>
+        protected EmailService(string smtpServer, string receiver, string messageText, string sender)
+        {
+
+            SmtpServer = smtpServer;
+            Receiver = receiver;
+            MessageText = messageText;
+            Sender = sender;
+        }
+
+        /// <summary>
+        /// Свойство Recipient класса в котором находится получатель, возвращает Incorrect Recipient, если пытаемся присвоить пустую строку.
+        /// </summary>
         public string Recipient
         {
             get => _recipient;
@@ -105,6 +141,9 @@ namespace Lab6
             }
         }
 
+        /// <summary>
+        /// Свойство Message класса в котором находится текст, возвращает Incorrect Message, если пытаемся присвоить пустую строку.
+        /// </summary>
         public string Message
         {
             get => _message;
@@ -120,12 +159,19 @@ namespace Lab6
                 }
             }
         }
+
+        /// <summary>
+        /// Свойство IsSent класса в котором находится статус письма(отправлено\получено).
+        /// </summary>
         private bool IsSent
         {
             get => _isSent;
             set => _isSent = value;
         }
 
+        /// <summary>
+        /// Метод изменяющий свойство имя класса в котором находится email.
+        /// </summary>
         public void SendEmail(string recipient, string message)
         {
             Recipient = recipient;
@@ -137,6 +183,9 @@ namespace Lab6
             }
         }
 
+        /// <summary>
+        /// Метод изменяющий свойство состояния email(отправлено true, получено false).
+        /// </summary>
         public void ReceiveEmail()
         {
             if (IsSent)

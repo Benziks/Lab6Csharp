@@ -10,18 +10,18 @@ namespace Lab5
         static void Main(string[] args)
         {
 
-            EmailService email = new GmailService(true, false, true, "Yahoo", "pop@gmail.com", "Privet aboba", "ya@gmail.com");
-            EmailService email1 = new GmailService(true, false, true, "Yahoo", "DOP@gmail.com", "Privet aboba", "ya@gmail.com");
+            EmailService email = new GmailService(true, false, true, "Yahoo", "pop@gmail.com", "Привет, я из компании DeliveryUnd", "ya@gmail.com");
+            EmailService email1 = new GmailService(true, false, false, "Gmail", "DOP@gmail.com", "Когда деньги вернешь", "ya@gmail.com");
             email.SendEmail("pop@gmail.com", "popa@gmail.com");
             email.ReceiveEmail();
 
             Console.WriteLine(email);
 
-            GmailService email2 = new GmailService(true, false, true, "Yahoo", "pop@gmail.com", "Privethh aboba", "ya@gmail.com");
+            GmailService email2 = new GmailService(true, false, true, "Gmail", "pop@gmail.com", "Сегодня на пары", "ya@gmail.com");
             Console.WriteLine(email2);
 
             Console.WriteLine("-----------------------------------------------------------");
-            EmailArray array = new EmailArray();
+            Emails array = new Emails();
 
             array.AddEmail(email2);
             array.AddEmail(email1);

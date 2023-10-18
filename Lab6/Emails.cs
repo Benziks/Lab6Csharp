@@ -7,11 +7,11 @@ using System.Xml.Linq;
 
 namespace Lab6
 {
-    public class EmailArray
+    public class Emails
     {
         private EmailService[] _emailService;
 
-        public EmailArray(params EmailService[] elements)
+        public Emails(params EmailService[] elements)
         {
             if (elements is not null)
             {
@@ -23,7 +23,11 @@ namespace Lab6
             }
         }
 
-
+        /// <summary>
+        /// Добавление объекта в массив.
+        /// </summary>
+        /// <param name="emailService">Объект для добавления.</param>
+        /// <exception cref="FormatException"></exception>
         public void AddEmail(EmailService emailService)
         {
             if (emailService is null)
@@ -37,7 +41,10 @@ namespace Lab6
             }
         }
 
-
+        /// <summary>
+        /// Удаление объекта из массива.
+        /// </summary>
+        /// <param name="emailNumber">Индекс элемента который необходимо удалить.</param>
         public void DeleteEmail(int emailNumber)
         {
             if (emailNumber >= 0 && emailNumber < _emailService.Length)
@@ -49,7 +56,12 @@ namespace Lab6
 
         }
 
-
+        /// <summary>
+        /// Обновление элемента массива по индексу, вернет FormatException, если индекс неверно задан
+        /// </summary>
+        /// <param name="emailService">Новый элемент</param>
+        /// <param name="emailNumber">Индекс обновляемого объекта</param>
+        /// <exception cref="FormatException"></exception>
         public void EditEmail(EmailService emailService, uint emailNumber)
         {
             if (emailNumber >= 0 && emailNumber < _emailService.Length)
