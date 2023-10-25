@@ -75,5 +75,15 @@ namespace Lab6
         }
 
         public EmailService[] EmailService => _emailService;
+
+        public override string ToString()
+        {
+            String result = "";
+            foreach (EmailService emailService in _emailService)
+            {
+                result += emailService + "\n";
+            }
+            return result;
+        }
     }
 }
