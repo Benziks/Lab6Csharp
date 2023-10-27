@@ -31,7 +31,7 @@ namespace Lab6
             get => _smtpServer;
             init
             {
-                if (!string.IsNullOrEmpty(value))
+                if (string.IsNullOrEmpty(value))
                 {
                     _smtpServer = value.Trim();
                 }
@@ -53,7 +53,7 @@ namespace Lab6
             get => _receiver;
             init
             {
-                if (!string.IsNullOrEmpty(value))
+                if (string.IsNullOrEmpty(value))
                 {
                     _receiver = value.Trim();
                 }
@@ -74,7 +74,7 @@ namespace Lab6
             get => _messageText;
             init
             {
-                if (!string.IsNullOrEmpty(value))
+                if (string.IsNullOrEmpty(value))
                 {
                     _messageText = value.Trim();
                 }
@@ -95,7 +95,7 @@ namespace Lab6
             get => _sender;
             init
             {
-                if (!string.IsNullOrEmpty(value))
+                if (string.IsNullOrEmpty(value))
                 {
                     _sender = value.Trim();
                 }
@@ -130,7 +130,7 @@ namespace Lab6
             get => _recipient;
             set
             {
-                if (!string.IsNullOrEmpty(value))
+                if (string.IsNullOrEmpty(value))
                 {
                     _recipient = value.Trim();
                 }
@@ -149,7 +149,7 @@ namespace Lab6
             get => _message;
             set
             {
-                if (!string.IsNullOrEmpty(value))
+                if (string.IsNullOrEmpty(value))
                 {
                     _message = value.Trim();
                 }
