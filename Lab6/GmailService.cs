@@ -9,12 +9,12 @@ namespace Lab6
     /// <summary>
     /// Класс GmailService, который наследуется от EmailService
     /// </summary>
-    public class GmailService : EmailService
+    public class GmailService : EmailService, IEmailSender
     {
         private bool _hasAttachments = false;
         private bool _spam = false;
         private bool _isStarred = false;
-
+        private bool _isSent = false;
 
         /// <summary>
         /// Свойство HasAttachments(Пометка наличия вложенных файлов) 
@@ -59,7 +59,37 @@ namespace Lab6
             Spam = spam;
             IsStarred = isStarred;
         }
+        private bool IsSent
+        {
+            get => _isSent;
+            set => _isSent = value;
+        }
 
+
+        /// <summary>
+        /// Метод изменяющий свойство имя класса в котором находится email.
+        /// </summary>
+        public override void SendEmail(string recipient, string message)
+        {
+            Recipient = recipient;
+            Message = message;
+
+            if (!IsSent)
+            {
+                IsSent = true;
+            }
+        }
+
+        /// <summary>
+        /// Метод изменяющий свойство состояния email(отправлено true, получено false).
+        /// </summary>
+        public override void ReceiveEmail()
+        {
+            if (IsSent)
+            {
+                IsSent = false;
+            }
+        }
 
         public override string ToString()
         {

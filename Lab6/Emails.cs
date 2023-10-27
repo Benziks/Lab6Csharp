@@ -30,14 +30,14 @@ namespace Lab6
         /// <exception cref="FormatException"></exception>
         public void AddEmail(EmailService emailService)
         {
-            if (emailService is null)
-            {
-                throw new FormatException("Неверно задано письмо");
-            }
-            else
+            if (emailService is not null)
             {
                 Array.Resize(ref _emailService, _emailService.Length + 1);
                 _emailService[_emailService.Length - 1] = emailService;
+            }
+            else
+            {
+                throw new FormatException("Неверно задано письмо");
             }
         }
 
@@ -64,7 +64,7 @@ namespace Lab6
         /// <exception cref="FormatException"></exception>
         public void EditEmail(EmailService emailService, uint emailNumber)
         {
-            if (emailNumber >= 0 && emailNumber < _emailService.Length)
+            if (emailNumber >= 0 && emailNumber < _emailService.Length &&  (emailService is not null))
             {
                 _emailService[emailNumber] = emailService;
             }

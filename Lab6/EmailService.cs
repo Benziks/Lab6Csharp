@@ -19,7 +19,7 @@ namespace Lab6
         private string _sender;
         private string _recipient;
         private string _message;
-        private bool _isSent = false;
+      
 
         /// <summary>
         /// Установка и получение поля SmtpServer(SMTP-сервер).
@@ -31,7 +31,7 @@ namespace Lab6
             get => _smtpServer;
             init
             {
-                if (string.IsNullOrEmpty(value))
+                if (!string.IsNullOrEmpty(value))
                 {
                     _smtpServer = value.Trim();
                 }
@@ -51,9 +51,9 @@ namespace Lab6
         public string Receiver
         {
             get => _receiver;
-            init
+            set
             {
-                if (string.IsNullOrEmpty(value))
+                if (!string.IsNullOrEmpty(value))
                 {
                     _receiver = value.Trim();
                 }
@@ -72,9 +72,9 @@ namespace Lab6
         public string MessageText
         {
             get => _messageText;
-            init
+            set
             {
-                if (string.IsNullOrEmpty(value))
+                if (!string.IsNullOrEmpty(value))
                 {
                     _messageText = value.Trim();
                 }
@@ -93,9 +93,9 @@ namespace Lab6
         public string Sender
         {
             get => _sender;
-            init
+            set
             {
-                if (string.IsNullOrEmpty(value))
+                if (!string.IsNullOrEmpty(value))
                 {
                     _sender = value.Trim();
                 }
@@ -130,7 +130,7 @@ namespace Lab6
             get => _recipient;
             set
             {
-                if (string.IsNullOrEmpty(value))
+                if (!string.IsNullOrEmpty(value))
                 {
                     _recipient = value.Trim();
                 }
@@ -149,7 +149,7 @@ namespace Lab6
             get => _message;
             set
             {
-                if (string.IsNullOrEmpty(value))
+                if (!string.IsNullOrEmpty(value))
                 {
                     _message = value.Trim();
                 }
@@ -163,36 +163,12 @@ namespace Lab6
         /// <summary>
         /// Свойство IsSent класса в котором находится статус письма(отправлено\получено).
         /// </summary>
-        private bool IsSent
-        {
-            get => _isSent;
-            set => _isSent = value;
-        }
 
-        /// <summary>
-        /// Метод изменяющий свойство имя класса в котором находится email.
-        /// </summary>
-        public void SendEmail(string recipient, string message)
-        {
-            Recipient = recipient;
-            Message = message;
+        public abstract void SendEmail(string recipient, string message);
 
-            if (!IsSent)
-            {
-                IsSent = true;
-            }
-        }
 
-        /// <summary>
-        /// Метод изменяющий свойство состояния email(отправлено true, получено false).
-        /// </summary>
-        public void ReceiveEmail()
-        {
-            if (IsSent)
-            {
-                IsSent = false;
-            }
-        }
+        public abstract void ReceiveEmail();
+
 
 
         public override string ToString()
